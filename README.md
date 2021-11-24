@@ -21,7 +21,7 @@ pip install asciidocwriter
 ## How to Run
 
 ```python
-python asciidocwriter .....
+python asciidocwriter ...
 ```
 
 ## Dependencies
