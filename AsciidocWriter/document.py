@@ -12,13 +12,10 @@ class Document():
     Asciidoc Document
 
     """
-    def __init__(self):
+    def __init__(self, name:str, author:str, description:str):
+        self.name = name
+        self.author = author
+        self.description = description
         self.sections[Section] = []
 
-    def section(self, title:str):
-        """
-        
-        """
-        logger.info(f"SECTION -> {title}")
-        pass
     
