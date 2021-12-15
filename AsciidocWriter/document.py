@@ -16,6 +16,8 @@ class Document():
         self.name = name
         self.author = author
         self.description = description
-        self.sections[Section] = []
+        self.sections = [Section]
 
-    
+
+    def add_section(self, section:Section):
+        self.sections.append(section)
