@@ -5,7 +5,7 @@ with open("README.md", "r") as fp:
 
 setup(
     name='asciidocwriter',
-    version='0.0.1',
+    version='0.0.2',
     packages=['AsciidocWriter'],
     url='https://github.com/vidigalp/asciidocwriter',
     license='',
