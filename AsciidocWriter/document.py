@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import List
 
 import yaml
+from jinja2 import Template
 from jinja2 import Environment
 from jinja2 import FileSystemLoader
 
@@ -24,10 +25,12 @@ class Document():
     def __init__(self, name:str, author:str, description:str=None, config_file:Path=None):
         """
 
-        @param name:
-        @param author:
-        @param description:
+        :param name:
+        :param author:
+        :param description:
+        :param config_file:
         """
+
         self.name = name
         self.author = author
         self.description = description
@@ -37,27 +40,28 @@ class Document():
             with open(config_file) as f:
                 self.config = yaml.load(f, Loader=yaml.FullLoader)
 
-        data = {"title": "title",
-                "author": self.config['header']['author'],
-                "images_directory": self.config['header']['image_directory'],
-                "image": self.config['header']['title-page-image']['image'],
-                "background_image_width": self.config['header']['title-page-image']['width'],
-                "background_image_height": self.config['header']['title-page-image']['height'],
-                "fit": self.config['header']['title-page-image']['fit'],
-                "xrefstyle": "short",
-                "opacity": self.config['header']['title-page-image']['opacity'],
-                "doc_uuid": str(uuid.uuid1())}
+        if self.config:
+            data = {"title": "title",
+                    "version": self.config['header']['version'],
+                    "author": self.config['header']['author'],
+                    "images_directory": self.config['header']['image_directory'],
+                    "image": self.config['header']['title-page-image']['image'],
+                    "background_image_width": self.config['header']['title-page-image']['width'],
+                    "background_image_height": self.config['header']['title-page-image']['height'],
+                    "fit": self.config['header']['title-page-image']['fit'],
+                    "xrefstyle": "short",
+                    "opacity": self.config['header']['title-page-image']['opacity'],
+                    "doc_uuid": str(uuid.uuid1())}
 
-        self.set_document_header(data=data)
+            self.set_document_header(data=data)
 
     def set_document_header(self, data, template_path:Path=None):
-        path = Path.joinpath(Path(__file__).resolve().parent, 'templates')
-        templateEnv = Environment(loader=FileSystemLoader(searchpath=path))
-        template = templateEnv.get_template("health_check_header.jinja2").render()
+        with open(Path.joinpath(Path(__file__).resolve().parent.parent, 'templates', 'header.jinja2')) as file_:
+            template = Template(file_.read())
 
         self.header = template.render(data)
 
-        i =2
+        i = 2
 
 
 
