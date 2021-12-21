@@ -4,7 +4,7 @@ from loguru import logger
 import seaborn as sns
 import matplotlib as plt
 from prophet import Prophet
-from utils import get_forecast_period
+from AsciidocWriter.asciidoc_writer_utils import get_forecast_period
 
 sns.set_theme(style="darkgrid")
 

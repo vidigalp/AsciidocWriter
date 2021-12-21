@@ -53,15 +53,19 @@ class Document():
                     "opacity": self.config['header']['title-page-image']['opacity'],
                     "doc_uuid": str(uuid.uuid1())}
 
-            self.set_document_header(data=data)
+            self.generate_header(data=data)
 
-    def set_document_header(self, data, template_path:Path=None):
+    def generate_header(self, data, template_path:Path=None):
+        """ Generate AsciiDoctor document header
+
+        @param data:
+        @param template_path:
+        """
         with open(Path.joinpath(Path(__file__).resolve().parent.parent, 'templates', 'header.jinja2')) as file_:
             template = Template(file_.read())
 
         self.header = template.render(data)
 
-        i = 2
 
 
 

@@ -42,6 +42,7 @@ def test_from_groupby_multiple_with_columns():
             'birth_date': ['01-02-1986', '08-05-1997', '04-28-1996', '12-16-1995']}
 
     df = pd.DataFrame(data)
+
     group = df.groupby(['favorite_color', 'age'])
 
     table = Table(name='test')

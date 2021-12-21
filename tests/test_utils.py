@@ -1,7 +1,7 @@
 import pytest
 import pandas as pd
-from AsciidocWriter.utils import load_jinja2_template
-from AsciidocWriter.utils import get_forecast_period
+from AsciidocWriter.asciidoc_writer_utils import load_jinja2_template
+from AsciidocWriter.asciidoc_writer_utils import get_forecast_period
 
 
 def test_load_jinja2_template():
